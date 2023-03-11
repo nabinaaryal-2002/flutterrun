@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttersample1/constants/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttersample1/view/home_page.dart';
 import 'package:flutter/services.dart';
 
@@ -22,16 +23,17 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Homepage(),
-    //     theme: ThemeData().copyWith(
-    //     backgroundColor: Colors, green,
-    //     buttonTheme: ButtonThemData().copyWith(
-    //       buttonColor: Colors.pink
-    //     )
-    // ),
+ return ScreenUtilInit(
+   designSize: const Size(320, 678),
+   minTextAdapt: true,
+   builder: (context , child) {
+     return MaterialApp(
+       debugShowCheckedModeBanner: false,
+       home: child,
+     );
+   },
+   child: Homepage(),
+ );
 
-    );
   }
 }
