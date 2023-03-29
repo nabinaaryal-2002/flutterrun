@@ -4,14 +4,33 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttersample1/constants/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttersample1/providers/counter_provider.dart';
 import 'package:get/get.dart';
+import 'package:fluttersample1/presentation/home_page.dart';
+import 'package:dio/dio.dart';
 
 
 
+final dio = Dio();
 
-void main(){
-SystemChrome.setSystemUIOverlayStyle(
+Future<void>  getData () async{
+  try{
+    final response = await dio.get('https://jsonplaceholder.typicode.com/posts');
+    print(response.data);
+  }on DioError catch(err){
+    print(err.message);
+    print(err.response);
+  }
+
+
+
+}
+
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Future.delayed(Duration(milliseconds: 500));
+
+  SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor:appColor
     )
@@ -33,51 +52,9 @@ class Home extends StatelessWidget {
        home: child,
      );
    },
-   child: Count(),
+   child: HomePage(),
  );
 
   }
 }
 
-class Count extends StatelessWidget {
-
-
-  @override
-  Widget build(BuildContext context) {
-    print('build start');
-    return Scaffold(
-        body: SafeArea(
-          child: Consumer(
-            builder: (context, ref, child) {
-              final number = ref.watch(counterProvider).number;
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('${number} ', style: TextStyle(fontSize: 50),),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            ref.read(counterProvider).addNumber();
-                          },
-                          child: Text('add')
-                      ),
-                      SizedBox(width: 20,),
-
-                      ElevatedButton(
-                          onPressed: () {
-                            ref.read(counterProvider).minusNumber();
-                          },
-                          child: Text('minus')
-                      )
-                    ],
-                  )
-                ],
-              );
-            }
-          ),
-        ),
-    );
-  }
-}
