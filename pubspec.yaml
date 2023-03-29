@@ -42,7 +42,7 @@ dependencies:
   flutter_riverpod: ^2.3.1
   intl: ^0.18.0
   dio: ^4.0.6
-#  dartz: ^0.10.1
+  dartz: ^0.10.1
 #  cached_network_image: ^3.2.3
 #  fluttertoast: ^8.2.1
 #  flutter_native_splash: ^2.2.19
