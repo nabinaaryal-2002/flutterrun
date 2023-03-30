@@ -1,4 +1,8 @@
-
+enum Categories{
+  popular,
+  top_rated,
+  upcoming
+}
 
 
 class Movie{
