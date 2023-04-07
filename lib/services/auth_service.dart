@@ -1,9 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:fluttersample1/api.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-
+import 'package:hive/hive.dart';
 
 
 
@@ -43,6 +44,9 @@ static final dio = Dio();
         'email':email,
         'password':password
       });
+
+      final box = Hive.box<String>('user');
+      box.put('userData', jsonEncode(response.data));
 
 
       return Right(true);

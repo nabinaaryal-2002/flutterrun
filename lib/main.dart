@@ -6,6 +6,8 @@ import 'package:fluttersample1/presentation/login_page.dart';
 import 'package:fluttersample1/presentation/status_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
 
 
@@ -16,6 +18,9 @@ void main () async{
   WidgetsFlutterBinding.ensureInitialized();
   await Future.delayed(Duration(milliseconds: 500));
 
+  await Hive.initFlutter();
+
+  final userBox = await Hive.box<String>('user');
 
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
