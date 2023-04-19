@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttersample1/models/user.dart';
 import 'package:fluttersample1/presentation/login_page.dart';
 import 'package:fluttersample1/presentation/status_page.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
 
-
+final box = Provider<String?>((ref) => null);
 
 
 
@@ -20,7 +21,7 @@ void main () async{
 
   await Hive.initFlutter();
 
-  final userBox = await Hive.box<String>('user');
+  final userBox = await Hive.openBox<String>('user');
 
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -28,7 +29,13 @@ void main () async{
       )
   );
 
-  runApp(ProviderScope(child: Home()));
+  runApp(ProviderScope(
+    overrides: [
+      box.overrideWithValue(userBox.get('userData'))
+
+    ],
+      child: Home()
+  ));
 }
 
 

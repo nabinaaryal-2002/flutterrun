@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fluttersample1/api.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:fluttersample1/models/user.dart';
 
 import 'package:hive/hive.dart';
 
@@ -35,7 +36,7 @@ static final dio = Dio();
 
 
 
-  static  Future<Either<String, bool>> userLogin({
+  static  Future<Either<String, User>> userLogin({
     required String email,
     required String password
   }) async {
@@ -47,9 +48,7 @@ static final dio = Dio();
 
       final box = Hive.box<String>('user');
       box.put('userData', jsonEncode(response.data));
-
-
-      return Right(true);
+      return Right(User.fromJson(response.data));
     }on DioError catch(err){
       return Left(err.response?.data['message']);
     }

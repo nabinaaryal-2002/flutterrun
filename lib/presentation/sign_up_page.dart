@@ -22,17 +22,18 @@ class SignUpPage  extends  ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
 
-    // ref.listen(authProvider, (previous, next) {
-    //   if(next.errorMessage.isNotEmpty){
-    //     SnackShow.showFailure(context, next.errorMessage);
-    //   }else if(next.isSuccess){
-    //     SnackShow.showSuccess(context, 'succesfully login');
-    //   }
-    // });
+    ref.listen(authProvider, (previous, next) {
+      if(next.errorMessage.isNotEmpty){
+        SnackShow.showFailure(context, next.errorMessage);
+      }else if(next.isSuccess){
+        SnackShow.showSuccess(context, 'succesfully login');
+        Get.back();
+      }
+    });
 
 
 
-    // final auth = ref.watch(authProvider);
+    final auth = ref.watch(authProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: blackColor,
@@ -179,12 +180,12 @@ class SignUpPage  extends  ConsumerWidget {
                               if(_form.currentState!.validate()){
 
 
-                                    // ref.read(authProvider.notifier).userSignUp(
-                                    //     username: usernameController.text.trim(),
-                                    //     email: emailController.text.trim(),
-                                    //     password: passwordController.text.trim(),
-                                    //     image: image
-                                    // );
+                                    ref.read(authProvider.notifier).userSignUp(
+                                        username: usernameController.text.trim(),
+                                        email: emailController.text.trim(),
+                                        password: passwordController.text.trim(),
+
+                                    );
 
 
 
@@ -193,10 +194,9 @@ class SignUpPage  extends  ConsumerWidget {
 
 
                             },
-                            child:
-                            // auth.isLoad ? Center(child: CircularProgressIndicator(
-                            //   color: Colors.white,
-                            // )):
+                            child: auth.isLoad ? Center(child: CircularProgressIndicator(
+                              color: Colors.white,
+                            )):
                             Text('SignUP', style: TextStyle(fontSize: 20.sp),)),
 
                         SizedBox(height: 20,),
