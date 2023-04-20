@@ -1,3 +1,6 @@
+
+
+
 import 'package:fluttersample1/models/user.dart';
 
 class AuthState{
@@ -13,7 +16,6 @@ class AuthState{
     required this.user
 
   });
-
 
   AuthState copyWith({bool? isLoad, String? errorMessage, bool? isSuccess, User? user }){
     return AuthState(
