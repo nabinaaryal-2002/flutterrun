@@ -54,7 +54,7 @@ class Home extends StatelessWidget {
           home: child,
         );
       },
-      child:  LoginPage()
+      child:  StatusPage()
     );
   }
 }

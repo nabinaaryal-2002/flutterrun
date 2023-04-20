@@ -41,8 +41,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
 
-
-
   Future<void> userLogin({
     required String email,
     required String password
@@ -61,7 +59,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   void userLogOut(){
     final box = Hive.box<String>('user');
     box.clear();
-    state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false, user: null);
+    state = state.copyWith(user: null);
   }
 
 
