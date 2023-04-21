@@ -1,10 +1,13 @@
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttersample1/presentation/crud_page.dart';
 import 'package:fluttersample1/providers/auth_provider.dart';
 import 'package:fluttersample1/services/crud_service.dart';
 import 'package:get/get.dart';
 import 'package:fluttersample1/presentation/create_page.dart';
+import 'package:fluttersample1/presentation/detail_page.dart';
+import 'package:fluttersample1/presentation/cart_page.dart';
 
 
 class HomePage extends ConsumerWidget {
@@ -18,6 +21,11 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Sample Shop'),
+          actions: [
+            IconButton(onPressed: (){
+              Get.to(() => CartPage(), transition: Transition.leftToRight);
+            }, icon: Icon(Icons.shopping_bag))
+          ],
         ),
         drawer: Drawer(
             child: ListView(
@@ -40,6 +48,14 @@ class HomePage extends ConsumerWidget {
                   leading: Icon(Icons.add),
                   title: Text('Create Product'),
                 ),
+                ListTile(
+                  onTap: (){
+                    Navigator.of(context).pop();
+                    Get.to(() => CrudPage(), transition: Transition.leftToRight);
+                  },
+                  leading: Icon(Icons.settings),
+                  title: Text('Customize Product'),
+                ),
 
                 ListTile(
                   onTap: (){
@@ -53,6 +69,7 @@ class HomePage extends ConsumerWidget {
 
         ),
         body:  Container(
+          padding:  EdgeInsets.symmetric(horizontal: 10, vertical:10),
           child: productData.when(
               data: (data){
                 return GridView.builder(
@@ -64,7 +81,27 @@ class HomePage extends ConsumerWidget {
                       childAspectRatio: 2/3,
                     ),
                   itemBuilder: (context, index){
-                    return Image.network(data[index].image);
+                    return InkWell(
+                      onTap: (){
+                        Get.to(() => DetailPage(data[index]));
+                      },
+                      child: GridTile(
+                        child: Image.network(data[index].image, fit: BoxFit.cover,),
+                        footer: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          height: 47,
+                          color: Colors.black,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(data[index].product_name),
+                              SizedBox(height: 10,),
+                              Text('Rs.${data[index].price}'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
                 },
                 );
               },

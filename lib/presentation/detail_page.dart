@@ -1,73 +1,71 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:fluttersample1/models/movie.dart';
-// import 'package:pod_player/pod_player.dart';
-//
-// import '../providers/video_provider.dart';
-//
-//
-// class DetailPage extends ConsumerWidget {
-//   final Movie movie;
-//   DetailPage(this.movie);
-//   @override
-//   Widget build(BuildContext context, ref) {
-//     final videoData = ref.watch(videoProvider(movie.id));
-//     return Scaffold(
-//         body: Container(
-//           decoration: BoxDecoration(
-//               image: DecorationImage(image: NetworkImage(movie.poster_path), fit: BoxFit.fill)
-//           ),
-//           child: ListView(
-//             children: [
-//               if(videoData.videos.isNotEmpty) PlayVideoFromNetwork(videoData.videos[0].key),
-//               if(videoData.errorMessage.isNotEmpty) Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: Text(videoData.errorMessage, style: TextStyle(fontSize: 17.sp, color: Colors.black),),
-//               ),
-//             ],
-//           ),
-//         )
-//     );
-//   }
-// }
-//
-//
-//
-// class PlayVideoFromNetwork extends StatefulWidget {
-//   final String keys;
-//   PlayVideoFromNetwork(this.keys);
-//   @override
-//   State<PlayVideoFromNetwork> createState() => _PlayVideoFromNetworkState();
-// }
-//
-// class _PlayVideoFromNetworkState extends State<PlayVideoFromNetwork> {
-//   late final PodPlayerController controller;
-//
-//   @override
-//   void initState() {
-//     controller = PodPlayerController(
-//         playVideoFrom: PlayVideoFrom.youtube('https://youtu.be/${widget.keys}'),
-//         podPlayerConfig: const PodPlayerConfig(
-//             autoPlay: true,
-//             // isLooping: false,
-//             videoQualityPriority: [1080, 720]
-//         )
-//     )..initialise();
-//
-//
-//     super.initState();
-//   }
-//
-//   @override
-//   void dispose() {
-//     controller.dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return PodVideoPlayer(controller: controller,
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttersample1/models/product.dart';
+import 'package:fluttersample1/providers/cart_provider.dart';
+
+class DetailPage extends StatelessWidget {
+  final Product product;
+  DetailPage(this.product);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Image.network(
+                              product.image,
+                              height: 300,
+                              width: 200,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  product.product_name,
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text('Rs. ${product.price}',
+                                    style: TextStyle(fontSize: 16)),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(product.product_detail),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Consumer(builder: (context, ref, child) {
+                        return ElevatedButton(
+                            onPressed: () {
+                              ref.read(cartProvider.notifier).addToCart(product, context);
+                            }, child: Text('Add To Cart'));
+                      }),
+                    ),
+                  )
+                ],
+              ),
+            )));
+  }
+}

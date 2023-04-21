@@ -8,10 +8,10 @@ import 'package:get/get.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-
+import 'package:fluttersample1/models/cart_item.dart';
 
 final box = Provider<String?>((ref) => null);
-
+final box1 = Provider<List<CartItem>>((ref) => []);
 
 
 void main () async{
@@ -19,8 +19,10 @@ void main () async{
   await Future.delayed(Duration(milliseconds: 500));
 
   await Hive.initFlutter();
+  Hive.registerAdapter(CartItemAdapter());
 
   final userBox = await Hive.openBox<String>('user');
+  final cartBox = await Hive.openBox<CartItem>('carts');
 
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
@@ -30,7 +32,8 @@ void main () async{
 
   runApp(ProviderScope(
     overrides: [
-      box.overrideWithValue(userBox.get('userData'))
+      box.overrideWithValue(userBox.get('userData')),
+      box1.overrideWithValue(cartBox.values.toList())
 
     ],
       child: Home()

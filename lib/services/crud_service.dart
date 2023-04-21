@@ -70,12 +70,13 @@ class CrudService {
   }) async {
     try {
       if (image == null) {
-        await dio.post(Api.updateProduct, data: {
+        await dio.patch('${Api.updateProduct}/${postId}', data: {
           'photo': 'no need',
           'product_name': title,
           'product_detail': detail,
           'price': price,
-        });
+        },options: Options(
+            headers: {HttpHeaders.authorizationHeader: 'Bearer $token'}));
       } else {
         final cloudinary =
             CloudinaryPublic('diiv6ljqv', 'shopapp', cache: false);
@@ -84,7 +85,7 @@ class CrudService {
               resourceType: CloudinaryResourceType.Image),
         );
 
-        await dio.post('${Api.updateProduct}/${postId}',
+        await dio.patch('${Api.updateProduct}/${postId}',
             data: {
               'product_name': title,
               'product_detail': detail,

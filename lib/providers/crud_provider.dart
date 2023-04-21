@@ -51,8 +51,8 @@ class CrudNotifier extends StateNotifier<CrudState> {
     required String detail,
     required String postId,
     required int price,
-    required XFile? image,
-    required String? imageId,
+     XFile? image,
+     String? imageId,
     required String token,
   }) async {
   state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false);
