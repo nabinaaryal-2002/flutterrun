@@ -24,7 +24,7 @@ factory Product.fromJson(Map<String, dynamic>json){
       image: json['image'],
       product_detail: json['product_detail'],
       product_name: json['product_name'],
-      productId: json['productId'],
+      productId: json['_id'],
       public_id: json['public_id']
   );
 }

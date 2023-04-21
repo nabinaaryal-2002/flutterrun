@@ -1,5 +1,5 @@
 
-import 'dart:io';
+import  'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:fluttersample1/api.dart';
@@ -110,7 +110,7 @@ class CrudService {
     try {
       await dio.delete('${Api.removeProduct}/${postId}',
           data: {
-            'product_id': imageId,
+            'public_id': imageId,
           },
           options: Options(
               headers: {HttpHeaders.authorizationHeader: 'Bearer $token'}));

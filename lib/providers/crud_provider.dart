@@ -29,38 +29,40 @@ class CrudNotifier extends StateNotifier<CrudState> {
   }
 
 
-//
-//
-// Future<void>  deletePost({
-//   required String postId,
-//   required String imageId,
-// }) async {
-//   state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false);
-//   final response = await CrudService.deletePost(postId: postId, imageId: imageId);
-//   response.fold((l) {
-//     state = state.copyWith(isLoad: false, errorMessage: l, isSuccess: false);
-//   }, (r) {
-//     state = state.copyWith(isLoad: false, errorMessage: '', isSuccess: true);
-//   });
-// }
-//
-//
-//
-//   Future<void> updatePost({
-//   required String title,
-//   required String detail,
-//   required String postId,
-//     XFile? image,
-//    String? imageId
-// }) async {
-//   state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false);
-//   final response = await CrudService.updatePost(title: title, detail: detail, postId: postId, image: image, imageId: imageId);
-//   response.fold((l) {
-//     state = state.copyWith(isLoad: false, errorMessage: l, isSuccess: false);
-//   }, (r) {
-//     state = state.copyWith(isLoad: false, errorMessage: '', isSuccess: true);
-//   });
-// }
+
+
+  Future<void> deletePost({
+    required String postId,
+    required String imageId,
+    required String token,
+  }) async {
+  state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false);
+  final response = await CrudService.deletePost(postId: postId, imageId: imageId, token: token);
+  response.fold((l) {
+    state = state.copyWith(isLoad: false, errorMessage: l, isSuccess: false);
+  }, (r) {
+    state = state.copyWith(isLoad: false, errorMessage: '', isSuccess: true);
+  });
+}
+
+
+  Future <void> updatePost({
+    required String title,
+    required String detail,
+    required String postId,
+    required int price,
+    required XFile? image,
+    required String? imageId,
+    required String token,
+  }) async {
+  state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false);
+  final response = await CrudService.updatePost(title: title, detail: detail, postId: postId, price: price, image: image, imageId: imageId, token: token);
+  response.fold((l) {
+    state = state.copyWith(isLoad: false, errorMessage: l, isSuccess: false);
+  }, (r) {
+    state = state.copyWith(isLoad: false, errorMessage: '', isSuccess: true);
+  });
+}
 
 
 
