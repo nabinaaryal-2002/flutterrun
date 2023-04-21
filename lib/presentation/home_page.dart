@@ -1,11 +1,13 @@
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttersample1/providers/auth_provider.dart';
 
 class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    final auth = ref.watch(authProvider);
     FlutterNativeSplash.remove();
 
     return Scaffold(
@@ -16,14 +18,14 @@ class HomePage extends ConsumerWidget {
             child: ListView(
               children: [
                 DrawerHeader(
-                  child: null,
+                  child: Text(auth.user!.email),
                 ),
                 ListTile(
                   onTap: (){
                     Navigator.of(context).pop();
                   },
-                  // leading: Icon(Icons.email),
-                  // title: Text(data.metadata!['email']),
+                  leading: Icon(Icons.email),
+                  title: Text(auth.user!.email),
                 ),
                 ListTile(
                   onTap: (){
@@ -36,7 +38,7 @@ class HomePage extends ConsumerWidget {
 
                 ListTile(
                   onTap: (){
-                    // ref.read(authProvider.notifier).userLogOut();
+                    ref.read(authProvider.notifier).userLogOut();
                   },
                   leading: Icon(Icons.exit_to_app),
                   title: Text('Log Out'),

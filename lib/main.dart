@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttersample1/models/user.dart';
 import 'package:fluttersample1/presentation/login_page.dart';
 import 'package:fluttersample1/presentation/status_page.dart';
 import 'package:get/get.dart';
