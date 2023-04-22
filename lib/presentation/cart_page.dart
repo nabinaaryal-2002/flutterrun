@@ -49,12 +49,12 @@ class _CartPageState extends ConsumerState<CartPage> {
                                             ref.read(cartProvider.notifier).removeFromCart(cart);
                                           },icon: Icon(Icons.close),)),
                                       Container(
-                                        margin: EdgeInsets.only(top: 70),
+                                        margin: EdgeInsets.only(top: 50),
                                         child: Column(
                                           children: [
                                             Text(cart.productName),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 20),
+                                              padding: const EdgeInsets.symmetric(vertical: 10),
                                               child: Text('Rs. ${cart.price}'),
                                             ),
                                             Row(

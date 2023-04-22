@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:fluttersample1/presentation/create_page.dart';
 import 'package:fluttersample1/presentation/detail_page.dart';
 import 'package:fluttersample1/presentation/cart_page.dart';
+import 'package:fluttersample1/presentation/order_history.dart';
 
 
 class HomePage extends ConsumerWidget {
@@ -55,6 +56,15 @@ class HomePage extends ConsumerWidget {
                   },
                   leading: Icon(Icons.settings),
                   title: Text('Customize Product'),
+                ),
+
+                ListTile(
+                  onTap: (){
+                    Navigator.of(context).pop();
+                    Get.to(() => OrderHistory(), transition: Transition.leftToRight);
+                  },
+                  leading: Icon(Icons.history),
+                  title: Text('orderHistory'),
                 ),
 
                 ListTile(

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttersample1/presentation/login_page.dart';
 import '../common/snackShow.dart';
 import '../constants/colors.dart';
 import '../providers/auth_provider.dart';
