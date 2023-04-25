@@ -1,61 +1,42 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttersample1/constants/colors.dart';
-import 'package:fluttersample1/presentation/home_page.dart';
-import 'package:get/get.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dio/dio.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:sampleflutter/presentation/status_page.dart';
 
-final dio = Dio();
+import 'firebase_options.dart';
 
-Future<void>  getData () async{
-  try{
-    final response = await dio.get('https://jsonplaceholder.typicode.com/posts');
-    print(response.data);
-  }on DioError catch(err){
-    print(err.message);
-    print(err.response);
-  }
+void main() async {
 
-
-
-}
-
-
-
-
-void main () async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Future.delayed(Duration(milliseconds: 500));
+  await Future.delayed(Duration(milliseconds: 50));
 
-
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        // statusBarColor: appColor
-      )
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+
+
   runApp(ProviderScope(child: Home()));
+
 }
-
-
 
 class Home extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return ScreenUtilInit(
-      designSize: const Size(411, 866),
+      designSize: const Size(392, 850),
       minTextAdapt: true,
-      builder: (context , child) {
+      splitScreenMode: true,
+      builder: (context, child) {
         return GetMaterialApp(
           theme: ThemeData.dark(),
           debugShowCheckedModeBanner: false,
           home: child,
         );
       },
-      child:  HomePage(),
+      child: StatusPage(),
     );
   }
 }
