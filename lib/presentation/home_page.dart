@@ -14,7 +14,7 @@ import 'package:fluttersample1/providers/crud_provider.dart';
 import 'package:fluttersample1/services/crud_service.dart';
 import 'package:get/get.dart';
 
-import 'package:fluttersample1/services/notification_service.dart';
+import 'package:fluttersample1/notification_service.dart';
 import 'create_page.dart';
 import 'detail_page.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -103,7 +103,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     final user = ref.watch(userStream(auth!));
     return Scaffold(
         appBar: AppBar(
-          title: Text('Sample Social'),
+          title: Text('Fire Chat'),
         ),
         drawer: Drawer(
             child: user.when(
