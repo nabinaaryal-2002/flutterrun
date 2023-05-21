@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttersample1/services/crud_service.dart';
 import 'package:fluttersample1/presentation/edit_page.dart';
 import 'package:get/get.dart';
+import 'package:fluttersample1/presentation/delete_page.dart';
 
 
 class CrudPage extends ConsumerWidget{
@@ -12,6 +13,7 @@ class CrudPage extends ConsumerWidget{
   Widget build(BuildContext context,ref) {
     final productData = ref.watch(products);
     return Scaffold(
+        backgroundColor: Colors.blueGrey,
         body:  Container(
           padding:  EdgeInsets.symmetric(horizontal: 10, vertical:10),
           child: productData.when(
@@ -32,7 +34,9 @@ class CrudPage extends ConsumerWidget{
                             IconButton(onPressed: (){
                               Get.to(()=> EditPage(data[index]));
                             }, icon: Icon(Icons.edit)),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.delete)),
+                            IconButton(onPressed: (){
+                              Get.to(()=> DeletePage(data[index]));
+                            }, icon: Icon(Icons.delete)),
                           ],
 
                         ),
@@ -47,4 +51,5 @@ class CrudPage extends ConsumerWidget{
         )
     );
   }
+
 }

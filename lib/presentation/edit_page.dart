@@ -57,14 +57,14 @@ class _EditPageState extends ConsumerState<EditPage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: blackColor,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.greenAccent,
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            Icon(Icons.fireplace_rounded, color: Color(0xFFFFFCB2B),),
+            Icon(Icons.fireplace_rounded, color: Colors.black,),
             SizedBox(width: 10.w,),
             Text('Shop App',
-              style: TextStyle(fontSize: 25.sp, color: Color(0xFFFFFCB2B)),),
+              style: TextStyle(fontSize: 25.sp, color: Colors.black),),
           ],
         ),
       ),
@@ -199,7 +199,7 @@ class _EditPageState extends ConsumerState<EditPage> {
 
                         TextButton(
                             style: TextButton.styleFrom(
-                                backgroundColor: Colors.amber.shade500,
+                                backgroundColor: Colors.greenAccent,
                                 foregroundColor: Colors.black
                             ),
                             onPressed: () {

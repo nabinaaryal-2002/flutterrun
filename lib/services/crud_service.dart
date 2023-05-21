@@ -118,6 +118,10 @@ class CrudService {
       return Right(true);
     } on DioError catch (err) {
       return Left(err.message);
+
     }
   }
+
+  deleteProduct({required String productId, required String token}) {}
+
 }

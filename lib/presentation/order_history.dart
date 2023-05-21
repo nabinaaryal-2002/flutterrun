@@ -13,6 +13,7 @@ class OrderHistory extends ConsumerWidget {
     final auth = ref.watch(authProvider);
     final history = ref.watch(orderHistory(auth.user!.id));
     return Scaffold(
+        backgroundColor: Colors.blueGrey,
         body: SafeArea(
             child: history.when(
                 data: (data) {
@@ -33,7 +34,7 @@ class OrderHistory extends ConsumerWidget {
                                   child: Stack(
                                     children: [
                                       Container(
-                                        margin: EdgeInsets.only(top: 70),
+                                        margin: EdgeInsets.only(top: 50),
                                         child: Column(
                                           children: [
                                             Text(e.productName),

@@ -6,6 +6,10 @@ import '../models/crud_state.dart';
 
 
 
+
+
+
+
 final crudProvider = StateNotifierProvider<CrudNotifier, CrudState>((ref) => CrudNotifier(CrudState.empty()));
 
 class CrudNotifier extends StateNotifier<CrudState> {
@@ -63,6 +67,8 @@ class CrudNotifier extends StateNotifier<CrudState> {
     state = state.copyWith(isLoad: false, errorMessage: '', isSuccess: true);
   });
 }
+
+  void refreshProducts() {}
 
 
 

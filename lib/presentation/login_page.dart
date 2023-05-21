@@ -40,13 +40,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: blackColor,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.greenAccent,
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            Icon(Icons.fireplace_rounded,color: Color(0xFFFFFCB2B),),
+            Icon(Icons.fireplace_rounded,color: Colors.black,),
             SizedBox(width: 10.w,),
-            Text('Shop App',style: TextStyle(fontSize: 25.sp, color: Color(0xFFFFFCB2B) ),),
+            Text('Shop App',style: TextStyle(fontSize: 25.sp, color: Colors.black ),),
           ],
         ),
       ),
@@ -103,7 +103,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                   // fillColor: Colors.black,
                                   filled: true,
                                   hintText: 'E-MAIL',
-                                  hintStyle: TextStyle(color: Colors.grey)
+                                  hintStyle: TextStyle(color: Colors.white)
                               )
                           ),
                         ),
@@ -133,14 +133,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                   // fillColor: Colors.black,
                                   filled: true,
                                   hintText: 'Password',
-                                  hintStyle: TextStyle(color: Colors.grey)
+                                  hintStyle: TextStyle(color: Colors.white)
                               )
                           ),
                         ),
 
                         TextButton(
                             style: TextButton.styleFrom(
-                                backgroundColor: Colors.amber.shade500,
+                                backgroundColor: Colors.greenAccent,
                                 foregroundColor: Colors.black
                             ),
                             onPressed: () {

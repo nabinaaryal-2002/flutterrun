@@ -10,6 +10,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blueGrey,
         body: SafeArea(
             child: Container(
               height: MediaQuery.of(context).size.height,
@@ -24,24 +25,24 @@ class DetailPage extends StatelessWidget {
                           children: [
                             Image.network(
                               product.image,
-                              height: 300,
+                              height: 500,
                               width: 200,
                             ),
                             SizedBox(
-                              width: 20,
+                              width: 30,
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   product.product_name,
-                                  style: TextStyle(fontSize: 17),
+                                  style: TextStyle(fontSize: 20),
                                 ),
                                 SizedBox(
                                   height: 20,
                                 ),
                                 Text('Rs. ${product.price}',
-                                    style: TextStyle(fontSize: 16)),
+                                    style: TextStyle(fontSize: 20)),
                               ],
                             ),
                           ],

@@ -20,12 +20,14 @@ class HomePage extends ConsumerWidget {
     FlutterNativeSplash.remove();
 
     return Scaffold(
+        backgroundColor:Colors.blueGrey,
         appBar: AppBar(
-          title: Text('Sample Shop'),
+          backgroundColor: Colors.greenAccent,
+          title: Text('Sample Shop',style:TextStyle( color:Colors.black)),
           actions: [
             IconButton(onPressed: (){
               Get.to(() => CartPage(), transition: Transition.leftToRight);
-            }, icon: Icon(Icons.shopping_bag))
+            }, icon: Icon(Icons.shopping_bag,color: Colors.black))
           ],
         ),
         drawer: Drawer(
