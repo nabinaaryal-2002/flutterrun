@@ -1,3 +1,6 @@
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttersample1/models/product.dart';
@@ -5,6 +8,7 @@ import 'package:fluttersample1/providers/auth_provider.dart';
 import 'package:fluttersample1/providers/crud_provider.dart';
 import 'package:fluttersample1/services/crud_service.dart';
 import 'package:get/get.dart';
+import '../services/crud_service.dart';
 
 class DeletePage extends ConsumerWidget {
   final Product product;
@@ -45,12 +49,14 @@ class DeletePage extends ConsumerWidget {
                       TextButton(
                         child: Text('Delete'),
                         onPressed: () async {
-                          await CrudService().deleteProduct(
-                            productId: product.productId,
+                          final navigator = Navigator.of(context);
+                          await CrudService.deletePost(
+                            postId: product.productId,
                             token: auth.user!.token,
+                            imageId: '',
                           );
                           ref.read(crudProvider.notifier).refreshProducts(); // Refresh the product list after deletion
-                          Get.back(); // Go back to the previous page
+                          navigator.maybePop(); // Go back to the previous page
                         },
                       ),
                     ],
@@ -65,40 +71,6 @@ class DeletePage extends ConsumerWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

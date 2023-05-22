@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttersample1/services/crud_service.dart';
 import 'package:image_picker/image_picker.dart';
 import '../models/crud_state.dart';
+import 'package:dio/dio.dart';
+import 'package:fluttersample1/api.dart';
 
 
 
@@ -40,6 +42,7 @@ class CrudNotifier extends StateNotifier<CrudState> {
     required String imageId,
     required String token,
   }) async {
+    await ('${Api.removeProduct}/${postId}');
   state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false);
   final response = await CrudService.deletePost(postId: postId, imageId: imageId, token: token);
   response.fold((l) {

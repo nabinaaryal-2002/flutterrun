@@ -26,7 +26,7 @@ class CrudState{
     return CrudState(errorMessage: '', isLoad: false, isSuccess: false);
   }
 
-  deletePost({required String postId, required String token}) {}
+
 
 
 

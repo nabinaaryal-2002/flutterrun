@@ -115,6 +115,7 @@ class CrudService {
           },
           options: Options(
               headers: {HttpHeaders.authorizationHeader: 'Bearer $token'}));
+      await Future.delayed(Duration(seconds: 2));
       return Right(true);
     } on DioError catch (err) {
       return Left(err.message);
@@ -122,6 +123,7 @@ class CrudService {
     }
   }
 
-  deleteProduct({required String productId, required String token}) {}
+
+deleteProduct({required String productId, required String token}) {}
 
 }
