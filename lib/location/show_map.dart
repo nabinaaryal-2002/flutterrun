@@ -23,7 +23,7 @@ class MapSampleState extends State<MapSample> {
   void initState() {
     setState(() {
       marker.add(Marker(
-          infoWindow: InfoWindow(title: 'MindRiser'),
+          infoWindow: InfoWindow(title: 'Home'),
           markerId: MarkerId('1'),
           position: LatLng(widget.lat, widget.long)
       ));

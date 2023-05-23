@@ -20,8 +20,17 @@ class DeletePage extends ConsumerWidget {
     final auth = ref.watch(authProvider);
 
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
-        title: Text('Delete Page'),
+        backgroundColor: Colors.greenAccent,
+        automaticallyImplyLeading: false,
+        title: Row(
+          children: [
+            Icon(Icons.fireplace_rounded,color: Colors.black,),
+            SizedBox(width: 10),
+            Text('Shop App',style: TextStyle(fontSize: 25, color: Colors.black ),),
+          ],
+        ),
       ),
       body: Center(
         child: Column(

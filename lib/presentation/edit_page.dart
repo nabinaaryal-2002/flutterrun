@@ -78,7 +78,7 @@ class _EditPageState extends ConsumerState<EditPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Create Page', style: TextStyle(fontSize: 25.sp,
+                Text('Edit Page', style: TextStyle(fontSize: 25.sp,
                     color: primary,
                     fontWeight: FontWeight.bold),),
                 SizedBox(

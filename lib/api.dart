@@ -1,6 +1,7 @@
 
 
 class Api {
+  // static const baseUrl = 'https://shopapp-amber.vercel.app/';
   static const baseUrl = 'http://192.168.100.12:3000';
   static const userLogin = '$baseUrl/api/userLogin';
   static const userSignUp = '$baseUrl/api/userSignUp';

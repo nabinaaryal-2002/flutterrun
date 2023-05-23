@@ -23,6 +23,21 @@ class _CartPageState extends ConsumerState<CartPage> {
     final total = ref.watch(cartProvider.notifier).total;
     final userData = ref.watch(authProvider);
     return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.blueGrey,
+        appBar: AppBar(
+          backgroundColor: Colors.greenAccent,
+          automaticallyImplyLeading: false,
+          title: Row(
+            children: [
+              Icon(Icons.fireplace_rounded,color: Colors.black,),
+              SizedBox(width: 10),
+              Text('Shop App',style: TextStyle(fontSize: 25, color: Colors.black ),),
+            ],
+          ),
+        ),
+
+
         body: SafeArea(
             child: cartData.isEmpty ? Center(child: Text('Add Some Product To cart')):
             Padding(

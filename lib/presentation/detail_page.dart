@@ -26,7 +26,7 @@ class DetailPage extends StatelessWidget {
                             Image.network(
                               product.image,
                               height: 500,
-                              width: 200,
+                              width: 150,
                             ),
                             SizedBox(
                               width: 30,
@@ -36,7 +36,7 @@ class DetailPage extends StatelessWidget {
                               children: [
                                 Text(
                                   product.product_name,
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(fontSize: 15),
                                 ),
                                 SizedBox(
                                   height: 20,

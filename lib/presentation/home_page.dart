@@ -23,7 +23,7 @@ class HomePage extends ConsumerWidget {
         backgroundColor:Colors.blueGrey,
         appBar: AppBar(
           backgroundColor: Colors.greenAccent,
-          title: Text('Sample Shop',style:TextStyle( color:Colors.black)),
+          title: Text('Shop App',style:TextStyle( color:Colors.black)),
           actions: [
             IconButton(onPressed: (){
               Get.to(() => CartPage(), transition: Transition.leftToRight);
